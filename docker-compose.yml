@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  server:
+    build: .
+    container_name: lib-server
+    ports:
+      - "6004:6004"
+    tty: true
+    stdin_open: true
+
+  client:
+    build: .
+    container_name: lib-client
+    depends_on:
+      - server
+    entrypoint: [ "./client" ]
+    stdin_open: true
+    tty: true
